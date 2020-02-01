@@ -1,20 +1,49 @@
-items = [["Hershey's Chocolate Bar", datetime.(2020, 01, 02)], ["Large Lunchable", datetime.(2020, 01, 01), datetime.(2020, 02, 05)], ["Kitkat", datetime.(2020, 02, 04), datetime.(2020, 03, 30)]]
+import datetime
+
+items = [["Hershey's Chocolate Bar", datetime.date(2020, 1, 2)], ["Large Lunchable", datetime.date(2020, 1, 1), datetime.date(2020, 2, 5)], ["Kitkat", datetime.date(2020, 2, 4), datetime.date(2020, 3, 30)], ["Lay's Classic Potato Chip", datetime.date(2020, 1, 1)]]
 exprired_items = []
 
-for item in items:
-  if item[1] < datetime.now():
-    exprired_items.append(item)
-    items.pop(item[1])
-    
-def expired_product_removed():
-  exprired_items = []
+today = datetime.date.today()
 
-def add_new_product(product, expriration_date):
-  for item in items:
-    if product == item[0]:
-      item.append(expiration_date)
-      item_in_invatory = True
-  if item_in_invatory == False:
-    items.append([product, expriration_date])
+for item in items:
+  if item[1] < today:
+    exprired_items.append(item)
+
+def remove_exprired_product():
+   for expired_item in exprired_items:
+      for item in items:
+         if expired_item == item:
+            item.pop(1)
+   exprired_items.clear()
+   return
+
+def add_new_product(new_product):
+   item_in_inventory = False
+   for product in new_product:
+      for item in items:
+         if product[0] == item[0]:
+            item.append(product[1])
+            item_in_inventory = True
+            return
+      if item_in_inventory == False:
+         items.append(product)
+   return
+
+def what_exprires(date):
+   expriring_stuff = []
+   for item in items:
+      try:
+         if item[1] < date:
+            expriring_stuff.append(item)
+      except IndexError:
+         print(item[0] + " Expiration date unknown")
+   return expriring_stuff
+
+def useable_date(day, month, year):
+   date = datetime.date(year, month, day)
+   return date
+
+jan312020_delivery = [["String Cheese", datetime.date(2020, 2, 2)], ["Meat Cheese Plater", datetime.date(2020, 2, 1)], ["Hershey's Chocolate Bar", datetime.date(2020, 2, 11)]]
+add_new_product(jan312020_delivery)
 
     
