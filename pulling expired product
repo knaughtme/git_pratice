@@ -1,1 +1,20 @@
+items = [["Hershey's Chocolate Bar", datetime.(2020, 01, 02)], ["Large Lunchable", datetime.(2020, 01, 01), datetime.(2020, 02, 05)], ["Kitkat", datetime.(2020, 02, 04), datetime.(2020, 03, 30)]]
+exprired_items = []
 
+for item in items:
+  if item[1] < datetime.now():
+    exprired_items.append(item)
+    items.pop(item[1])
+    
+def expired_product_removed():
+  exprired_items = []
+
+def add_new_product(product, expriration_date):
+  for item in items:
+    if product == item[0]:
+      item.append(expiration_date)
+      item_in_invatory = True
+  if item_in_invatory == False:
+    items.append([product, expriration_date])
+
+    
